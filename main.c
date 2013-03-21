@@ -3,19 +3,19 @@
 #include <unistd.h>
 #include<stdlib.h>
 
-void main (int argc, char *argv[]) {
-FILE *f = NULL;
+void main (int argc, char *argv[], char *envp[]) {
+  FILE *f = NULL;
 
-int pid = fork();
+  int pid = fork();
 
-f = fopen("first-one.txt", "wt");
+  f = fopen("first-one.txt", "wt");
 
-if(pid == 0)
-fprintf(f, "%d, %d", pid, getpid());
-else if (pid > 0)
-printf("%d, %d", pid, getpid());
-else
-printf("FUUUUUUUUUUU");
+  if(pid == 0)
+    execle("/usr/bin/env","/usr/bin/evn",  0, envp);
+  else if (pid > 0)
+    printf("%d, %d", pid, getpid());
+  else
+    printf("!!!!!!!!!!!!!!!!");
 
-fclose(f);
+  fclose(f);
 } 
